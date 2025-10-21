@@ -1,0 +1,257 @@
+{
+    "Iudex Gundyr": {
+        "location": "Cemetery of Ash",
+        "difficulty": 2,
+        "weaknesses": [
+            "Fire"
+        ],
+        "lore": "A once-chosen champion who arrived too late to fulfill his destiny. He now stands as a gatekeeper, testing those who seek to link the flame.",
+        "prerequisites": [],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Stay behind him and avoid his wide swings.",
+            "phase_2": "Be aggressive when he transforms into the Pus of Man."
+        },
+        "image": "images/iudex_gundyr.jpg"
+    },
+    "Vordt of the Boreal Valley": {
+        "location": "High Wall of Lothric",
+        "difficulty": 3,
+        "weaknesses": [
+            "Fire",
+            "Lightning"
+        ],
+        "lore": "A former knight who succumbed to the cold influence of the Boreal Valley, turning into a mindless beast driven only by instinct.",
+        "prerequisites": [
+            "Iudex Gundyr"
+        ],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Dodge sideways to avoid charges.",
+            "phase_2": "Stay behind him and attack between his lunges."
+        },
+        "image": "images/vordt_of_the_boreal_valley.jpg"
+    },
+    "Curse-rotted Greatwood": {
+        "location": "Undead Settlement",
+        "difficulty": 4,
+        "weaknesses": [
+            "Strike",
+            "Fire"
+        ],
+        "lore": "A decayed tree that has absorbed the curses of the Undead, mutating into a grotesque abomination.",
+        "prerequisites": [],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Attack the sacs on its body to deal massive damage.",
+            "phase_2": "Watch out for the massive hand after the floor breaks."
+        },
+        "image": "images/curse-rotted_greatwood.jpg"
+    },
+    "Crystal Sage": {
+        "location": "Road of Sacrifices",
+        "difficulty": 3,
+        "weaknesses": [
+            "Lightning",
+            "Melee"
+        ],
+        "lore": "A rogue sorcerer who studied forbidden magic and betrayed the Academy of Lothric.",
+        "prerequisites": [
+            "Vordt of the Boreal Valley"
+        ],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Rush in and attack before he teleports.",
+            "phase_2": "Find the real sage among his clones."
+        },
+        "image": "images/crystal_sage.jpg"
+    },
+    "Aldrich, Devourer of Gods": {
+        "location": "Anor Londo",
+        "difficulty": 6,
+        "weaknesses": [
+            "Lightning",
+            "Fire"
+        ],
+        "lore": "A former cleric who succumbed to cannibalism and became a sludge-like creature, consuming gods.",
+        "prerequisites": [],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Avoid his magic projectiles and fire attacks.",
+            "phase_2": "Close the distance to prevent his most powerful attacks."
+        },
+        "image": "images/aldrich_devourer_of_gods.jpg"
+    },
+    "Dancer of the Boreal Valley": {
+        "location": "Lothric Castle",
+        "difficulty": 7,
+        "weaknesses": [
+            "Dark",
+            "Lightning"
+        ],
+        "lore": "A hauntingly graceful warrior bound to the Boreal Valley, her movements are deceptive and deadly.",
+        "prerequisites": [
+            "Aldrich, Devourer of Gods"
+        ],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Stick to her left side to avoid wide slashes.",
+            "phase_2": "Time dodges with her spinning combos."
+        },
+        "image": "images/dancer_of_the_boreal_valley.jpg"
+    },
+    "Oceiros, the Consumed King": {
+        "location": "Consumed King's Garden",
+        "difficulty": 6,
+        "weaknesses": [
+            "Lightning",
+            "Frost"
+        ],
+        "lore": "A former king turned into a mad, blind dragon, obsessed with his child Ocelotte.",
+        "prerequisites": [
+            "Dancer of the Boreal Valley"
+        ],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Avoid his lunging attacks and tail swipes.",
+            "phase_2": "Watch out for his frenzied charges and magic blasts."
+        },
+        "image": "images/oceiros_the_consumed_king.jpg"
+    },
+    "Champion Gundyr": {
+        "location": "Untended Graves",
+        "difficulty": 7,
+        "weaknesses": [
+            "Fire",
+            "Lightning"
+        ],
+        "lore": "An alternate version of Iudex Gundyr, showcasing his true strength as a champion.",
+        "prerequisites": [
+            "Oceiros, the Consumed King"
+        ],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Learn his attack patterns and dodge accordingly.",
+            "phase_2": "Be prepared for faster and more aggressive combos."
+        },
+        "image": "images/champion_gundyr.jpg"
+    },
+    "Lorian, Elder Prince and Lothric, Younger Prince": {
+        "location": "Grand Archives",
+        "difficulty": 9,
+        "weaknesses": [
+            "Lightning",
+            "Dark"
+        ],
+        "lore": "The elder prince Lorian fights in place of his younger brother, Lothric, who refuses to link the fire.",
+        "prerequisites": [
+            "Champion Gundyr"
+        ],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Dodge Lorian\u00e2\u20ac\u2122s teleports and heavy attacks.",
+            "phase_2": "Prioritize Lothric once he appears to prevent healing."
+        },
+        "image": "images/lorian_elder_prince_and_lothric_younger_prince.jpg"
+    },
+    "Nameless King": {
+        "location": "Archdragon Peak",
+        "difficulty": 10,
+        "weaknesses": [
+            "Lightning",
+            "Frost"
+        ],
+        "lore": "The firstborn of Gwyn, stripped of his titles after siding with the dragons. Now, he roams the skies atop his storm-wielding wyvern.",
+        "prerequisites": [
+            "Lorian, Elder Prince and Lothric, Younger Prince"
+        ],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Target the wyvern\u00e2\u20ac\u2122s head for massive damage.",
+            "phase_2": "Time dodges to his heavy lightning attacks."
+        },
+        "image": "images/nameless_king.jpg"
+    },
+    "Soul of Cinder": {
+        "location": "Kiln of the First Flame",
+        "difficulty": 10,
+        "weaknesses": [
+            "Lightning",
+            "Frost"
+        ],
+        "lore": "A manifestation of all who have linked the flame before, wielding the abilities of past lords.",
+        "prerequisites": [
+            "Nameless King"
+        ],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Adapt to his various weapon styles.",
+            "phase_2": "Time your dodges against his flame sword attacks."
+        },
+        "image": "images/soul_of_cinder.jpg"
+    },
+    "Yhorm the Giant": {
+        "location": "Profaned Capital",
+        "difficulty": 9,
+        "weaknesses": [
+            "Fire",
+            "Strike"
+        ],
+        "lore": "Yhorm the Giant, one of the Lords of Cinder, is a massive creature who wields the Storm Ruler, a weapon designed to slay giants.",
+        "prerequisites": [],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Use the Storm Ruler to deal massive damage.",
+            "phase_2": "Stay behind him and avoid his charging attacks."
+        },
+        "image": "images/yhorm_the_giant.jpg"
+    },
+    "Abyss Watchers": {
+        "location": "Farron Keep",
+        "difficulty": 7,
+        "weaknesses": [
+            "Fire",
+            "Bleed"
+        ],
+        "lore": "The Abyss Watchers are a group of warriors dedicated to fighting the Abyss, using their flame to defeat the encroaching darkness.",
+        "prerequisites": [],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Focus on the one who attacks you, as the others will fight each other.",
+            "phase_2": "Watch out for the flames they summon in the second phase."
+        },
+        "image": "images/abyss_watchers.jpg"
+    },
+    "Deacons of the Deep": {
+        "location": "Catacombs of Carthus",
+        "difficulty": 4,
+        "weaknesses": [
+            "Fire",
+            "Holy"
+        ],
+        "lore": "The Deacons of the Deep serve as guardians of the Cathedral of the Deep, wielding the power of the Deep in service to Aldrich.",
+        "prerequisites": [],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Focus on the main Deacon and avoid the swarming lesser Deacons.",
+            "phase_2": "Avoid the explosion when the main Deacon is defeated."
+        },
+        "image": "images/deacons_of_the_deep.jpg"
+    },
+    "High Lord Wolnir": {
+        "location": "The Catacombs of Carthus",
+        "difficulty": 7,
+        "weaknesses": [
+            "Holy",
+            "Fire"
+        ],
+        "lore": "High Lord Wolnir was a king who became a giant skeletal entity after consuming the cursed black soil.",
+        "prerequisites": [],
+        "defeated": false,
+        "phase_tips": {
+            "phase_1": "Destroy the bracelets on his arms to deal damage.",
+            "phase_2": "Stay close to him during the second phase to avoid his curse attacks."
+        },
+        "image": "images/high_lord_wolnir.jpg"
+    }
+}
