@@ -1,12 +1,22 @@
 import sys
+import os
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtCore import QUrl
 from boss import load_bosses_from_json
-from PythonProject.darksoulsAPP_ui import Ui_MainWindow
+try:
+    from PythonProject.darksoulsAPP_ui import Ui_MainWindow
+except ModuleNotFoundError:
+    from darksoulsAPP_ui import Ui_MainWindow
 import json
 
-def save_bosses_to_json(bosses, file_path="data/databoss.json"):
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, "data", "databoss.json")
+MUSIC_PATH = os.path.join(BASE_DIR, "music", "main_theme.wav")
+MUSIC_ICON_PATH = os.path.join(BASE_DIR, "images", "music_note1.jpg")
+
+
+def save_bosses_to_json(bosses, file_path=DATA_PATH):
     with open(file_path, "w", encoding="utf-8") as f:
         boss_data = {
             name: {
@@ -28,14 +38,15 @@ class App(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.boss_data = load_bosses_from_json("data/databoss.json")
+        self.boss_data = load_bosses_from_json(DATA_PATH)
         self.total_bosses = 15
 
         self.defeated_count = sum(1 for boss in self.boss_data.values() if boss.defeated)
         self.ui.progressBar.setValue(int((self.defeated_count / self.total_bosses) * 100))
 
         self.media_player = QMediaPlayer()
-        self.media_player.setMedia(QMediaContent(QUrl.fromLocalFile("music/main_theme.wav")))
+        self.media_player.setMedia(QMediaContent(QUrl.fromLocalFile(MUSIC_PATH)))
+        self.ui.playButton.setIcon(QtGui.QIcon(MUSIC_ICON_PATH))
         self.ui.playButton.clicked.connect(self.toggle_music)
         self.ui.resetButton.clicked.connect(self.reset_progress)
 
@@ -47,9 +58,11 @@ class App(QtWidgets.QMainWindow):
         )
 
         self.ui.bossList.itemSelectionChanged.connect(self.display_boss_info)
+        self.ui.bossList.currentItemChanged.connect(self.display_boss_info)
+        self.ui.bossList.verticalScrollBar().valueChanged.connect(self.sync_current_boss_with_scroll)
         self.ui.defeatBox.setChecked(False)
         self.ui.defeatBox.stateChanged.connect(self.handle_defeat_box)
-        self.ui.tipBox.stateChanged.connect(self.show_tips_popup)
+        self.ui.tipBox.clicked.connect(self.show_tips_popup)
 
     def reset_progress(self):
         confirmation = QtWidgets.QMessageBox.question(
@@ -71,8 +84,8 @@ class App(QtWidgets.QMainWindow):
             QtWidgets.QMessageBox.information(self, "Reset", "All progress has been reset.")
 
     def display_boss_info(self):
-        selected_items = self.ui.bossList.selectedItems()
-        if not selected_items:
+        current_item = self.ui.bossList.currentItem()
+        if not current_item:
             self.ui.textLore.setHtml(
                 '<div align="center">'
                 '<h1 style="color:#FFD700; font-family:\'Trajan Pro\';">DARK SOULS III</h1>'
@@ -85,8 +98,20 @@ class App(QtWidgets.QMainWindow):
             self.ui.defeatBox.blockSignals(False)
             return
 
-        boss_name = selected_items[0].text()
+        boss_name = current_item.text()
         boss = self.boss_data.get(boss_name)
+        if not boss:
+            self.ui.textLore.setHtml(
+                '<div align="center">'
+                '<h1 style="color:#FFD700; font-family:\'Trajan Pro\';">DARK SOULS III</h1>'
+                '<p style="color:white; font-size:14pt;">Select a valid boss.</p>'
+                '</div>'
+            )
+            self.ui.label_2.clear()
+            self.ui.defeatBox.blockSignals(True)
+            self.ui.defeatBox.setChecked(False)
+            self.ui.defeatBox.blockSignals(False)
+            return
 
         self.ui.textLore.setText(boss.lore)
 
@@ -104,6 +129,14 @@ class App(QtWidgets.QMainWindow):
         self.ui.defeatBox.blockSignals(True)
         self.ui.defeatBox.setChecked(boss.defeated)
         self.ui.defeatBox.blockSignals(False)
+
+    def sync_current_boss_with_scroll(self):
+        """Keep the focused boss synced with scroll position."""
+        viewport = self.ui.bossList.viewport()
+        center_point = viewport.rect().center()
+        center_item = self.ui.bossList.itemAt(center_point)
+        if center_item:
+            self.ui.bossList.setCurrentItem(center_item)
 
     def handle_defeat_box(self):
         selected_items = self.ui.bossList.selectedItems()
@@ -176,19 +209,23 @@ class App(QtWidgets.QMainWindow):
                 self.ui.progressBar.setValue(int((self.defeated_count / 15) * 100))
                 save_bosses_to_json(self.boss_data)
 
-    def show_tips_popup(self):
-        if not self.ui.tipBox.isChecked():
+    def show_tips_popup(self, checked):
+        if not checked:
             return
 
         selected_items = self.ui.bossList.selectedItems()
         if not selected_items:
+            self.ui.tipBox.blockSignals(True)
             self.ui.tipBox.setChecked(False)
+            self.ui.tipBox.blockSignals(False)
             return
 
         boss_name = selected_items[0].text()
         boss = self.boss_data.get(boss_name)
         if not boss:
+            self.ui.tipBox.blockSignals(True)
             self.ui.tipBox.setChecked(False)
+            self.ui.tipBox.blockSignals(False)
             return
 
         location = boss.location

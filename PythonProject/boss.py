@@ -1,4 +1,5 @@
 import json
+import os
 
 class Boss:
     def __init__(self, name, location, difficulty, weaknesses, lore, image, prerequisites=None):
@@ -20,11 +21,18 @@ class Boss:
 def load_bosses_from_json(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
+        base_dir = os.path.dirname(os.path.abspath(file_path))
+        project_dir = os.path.dirname(base_dir)
 
         bosses = {}
         for name, entry in data.items():
-            # Construct the image path based on the boss name
-            image_path = f"images/{name.lower().replace(',', '').replace(' ', '_')}.jpg"
+            # Prefer explicit image path from JSON and resolve it from project root.
+            image_relative = entry.get('image')
+            if image_relative:
+                image_path = os.path.join(project_dir, image_relative)
+            else:
+                generated = f"{name.lower().replace(',', '').replace(' ', '_')}.jpg"
+                image_path = os.path.join(project_dir, "images", generated)
 
             # Create a Boss object using the data from the JSON
             boss = Boss(
